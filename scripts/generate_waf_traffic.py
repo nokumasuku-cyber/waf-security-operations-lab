@@ -4,7 +4,7 @@ import httpx
 BASE_URL = "http://localhost:8080"
 
 
-def test_request(name, path):
+def send_request(name, path):
     response = httpx.get(f"{BASE_URL}{path}")
 
     print(f"\n{name}")
@@ -45,4 +45,4 @@ tests = [
 
 
 for name, path in tests:
-    test_request(name, path)
+    send_request(name, path)
