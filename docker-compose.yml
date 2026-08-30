@@ -1,0 +1,18 @@
+services:
+  app:
+    build: .
+    container_name: waf-lab-app
+    expose:
+      - "8000"
+
+  waf:
+    image: owasp/modsecurity-crs:nginx
+    container_name: waf-lab-waf
+    ports:
+      - "8080:8080"
+    environment:
+      BACKEND: "http://app:8000"
+      PORT: "8080"
+      MODSEC_RULE_ENGINE: "On"
+    depends_on:
+      - app
